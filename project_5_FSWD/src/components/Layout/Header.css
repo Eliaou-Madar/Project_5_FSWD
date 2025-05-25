@@ -1,0 +1,60 @@
+/* src/components/Layout/Header.css */
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #4a90e2;
+  padding: 0.75rem 1rem;
+  color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.app-header h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: border-bottom 0.2s;
+  padding-bottom: 0.25rem;
+}
+
+.header-nav a.active {
+  border-bottom: 2px solid #fff;
+}
+
+.logout-button {
+  background: transparent;
+  border: none;
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0.5rem 0.75rem;
+  transition: background 0.2s;
+}
+
+.logout-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+@media (max-width: 600px) {
+  .app-header {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .header-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
