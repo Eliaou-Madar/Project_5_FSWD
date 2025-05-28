@@ -42,7 +42,7 @@ export default function PostsPage() {
 
   // Filtered list
   const displayed = posts
-    .filter(p => (searchId ? p.id === +searchId : true))
+    .filter(p => (searchId ? p.id.toLowerCase().includes(searchId.toLocaleLowerCase()) : true))
     .filter(p => (searchTitle
       ? p.title.toLowerCase().includes(searchTitle.toLowerCase())
       : true))
@@ -142,7 +142,6 @@ export default function PostsPage() {
       {/* Search */}
       <div className="posts-search">
         <input
-          type="number"
           value={searchId}
           onChange={e => setSearchId(e.target.value)}
           placeholder="Filtrer par ID"

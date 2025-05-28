@@ -15,7 +15,7 @@ export default function LoginPage() {
     const user = await login(username, password)
     if (user) {
       // Redirection vers /users/:userId/info
-      navigate(`/users/${user.id}/info`, { replace: true })
+      navigate(`/users/${user.id}/home`, { replace: true })
     } else {
      setError('Utilisateur ou mot de passe invalide')
     }

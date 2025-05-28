@@ -61,7 +61,7 @@ export default function TodosPage() {
 
   // Filtrage & tri
   const displayed = todos
-    .filter(t => (filterId ? t.id === parseInt(filterId, 10) : true))
+    .filter(t => (filterId ? t.id.toLowerCase().includes(filterId.toLocaleLowerCase()) : true))
     .filter(t =>
       filterTitle
         ? t.title.toLowerCase().includes(filterTitle.toLowerCase())
@@ -111,7 +111,6 @@ export default function TodosPage() {
         <label>
           Filtrer ID:
           <input
-            type="number"
             value={filterId}
             onChange={e => setFilterId(e.target.value)}
           />

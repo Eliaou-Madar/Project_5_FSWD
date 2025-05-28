@@ -26,7 +26,7 @@ export default function AlbumsPage() {
 
   // Filtrage par ID et titre
   const displayed = albums
-    .filter(a => (searchId ? a.id === parseInt(searchId, 10) : true))
+    .filter(a => (searchId ? a.id.toLowerCase().includes(searchId.toLocaleLowerCase()) : true))
     .filter(a =>
       searchTitle
         ? a.title.toLowerCase().includes(searchTitle.toLowerCase())
@@ -45,7 +45,6 @@ export default function AlbumsPage() {
         <label>
           Filtrer ID:
           <input
-            type="number"
             value={searchId}
             onChange={e => setSearchId(e.target.value)}
             placeholder="ID exact"

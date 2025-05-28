@@ -31,7 +31,7 @@ export default function Router() {
           </PrivateRoute>
         }
       >
-        <Route index element={<Navigate to="info" replace />} />
+        <Route index element={<Navigate to="home" replace />} />
         <Route path="info" element={<InfoPage />} />
         <Route path="todos" element={<TodosPage />} />
         <Route path="posts" element={<PostsPage />} />

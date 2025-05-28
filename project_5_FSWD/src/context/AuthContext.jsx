@@ -1,6 +1,6 @@
 /* src/context/AuthContext.jsx */
 import React, { createContext, useState, useEffect } from 'react'
-import { login as loginService, register as registerService } from '../services/authService'
+import { login as loginService, register as registerService, update as updateService } from '../services/authService'
 import { getItem, setItem, removeItem } from '../utils/storage'
 
 export const AuthContext = createContext()
@@ -23,15 +23,27 @@ export function AuthProvider({ children }) {
     return null
   }
 
+
   async function register(username, password) {
     const u = await registerService(username, password)
     if (u) {
       setUser(u)
       setItem('user', u)
-      return true
+      return u
     }
-    return false
+    return null
   }
+
+ async function update(username, data) {
+  const u = await updateService(username, data)
+  if (u) {
+    setUser(u)
+    setItem('user', u)
+    return u
+  }
+  return null
+}
+
 
   function logout() {
     setUser(null)
@@ -39,7 +51,7 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider value={{ user, login, register,update, logout }}>
       {children}
     </AuthContext.Provider>
   )

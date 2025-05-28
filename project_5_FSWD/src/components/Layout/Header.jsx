@@ -21,6 +21,12 @@ export default function Header() {
       <h1>My App</h1>
       <nav className="header-nav">
         <Link 
+          to={`${base}/home`} 
+          className={location.pathname.startsWith(`${base}/home`) ? 'active' : ''}
+        >
+          Home
+        </Link>
+        <Link 
           to={`${base}/info`} 
           className={location.pathname.startsWith(`${base}/info`) ? 'active' : ''}
         >
