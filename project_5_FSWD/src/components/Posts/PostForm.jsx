@@ -6,25 +6,25 @@ export default function PostForm({ onAdd }) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!title || !body) return;
+    if (!title.trim() || !body.trim()) return;
     onAdd({ title, body });
     setTitle('');
     setBody('');
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="post-form">
       <input
         value={title}
         onChange={e => setTitle(e.target.value)}
-        placeholder="Post title"
+        placeholder="Titre du post"
       />
       <textarea
         value={body}
         onChange={e => setBody(e.target.value)}
-        placeholder="Post content"
+        placeholder="Contenu du post"
       />
-      <button type="submit">Add Post</button>
+      <button type="submit">Ajouter Post</button>
     </form>
   );
 }

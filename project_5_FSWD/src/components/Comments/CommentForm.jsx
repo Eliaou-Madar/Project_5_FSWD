@@ -1,37 +1,36 @@
 import React, { useState } from 'react';
 
-export default function CommentForm({ onAdd }) {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
+export default function CommentForm({ onAdd, defaultName = '', defaultEmail = '' }) {
+  const [name, setName] = useState(defaultName);
+  const [email, setEmail] = useState(defaultEmail);
   const [body, setBody] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
-    if (!name || !email || !body) return;
-    onAdd({ name, email, body });
-    setName('');
-    setEmail('');
-    setBody('');
+    if (!body.trim()) return;
+    onAdd({ name: name || defaultName, email: email || defaultEmail, body });
+    setBody(''); // Reset only body, keep name and email
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="comment-form">
       <input
         value={name}
         onChange={e => setName(e.target.value)}
-        placeholder="Your name"
+        placeholder="Votre nom"
       />
       <input
         value={email}
         onChange={e => setEmail(e.target.value)}
-        placeholder="Your email"
+        placeholder="Votre email"
+        type="email"
       />
       <textarea
         value={body}
         onChange={e => setBody(e.target.value)}
-        placeholder="Comment"
+        placeholder="Votre commentaire..."
       />
-      <button type="submit">Add Comment</button>
+      <button type="submit">Ajouter Commentaire</button>
     </form>
   );
 }

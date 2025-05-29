@@ -8,5 +8,6 @@ export const photoService = {
   update: (id, data) =>
     api.put(`/photos/${id}`, data),
   delete: id =>
-    api.delete(`/photos/${id}`)
+    api.delete(`/photos/${id}`),
+   
 }

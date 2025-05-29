@@ -1,12 +1,17 @@
 import React from 'react';
-import AlbumItem from './AlbumItem';
 
-export default function AlbumList({ albums, onSelect }) {
+export default function AlbumItem({ album, onSelect, userId }) {
   return (
-    <ul>
-      {albums.map(album => (
-        <AlbumItem key={album.id} album={album} onSelect={onSelect} />
-      ))}
-    </ul>
+    <li className="album-item">
+      <span className="album-id">{album.id}.</span>
+      <button
+        className="album-link"
+        onClick={() => onSelect(album)}
+      >
+        {album.title}
+      </button>
+    </li>
   );
 }
+
+

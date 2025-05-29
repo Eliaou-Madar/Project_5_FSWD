@@ -45,6 +45,7 @@ export function AuthProvider({ children }) {
 }
 
 
+
   function logout() {
     setUser(null)
     removeItem('user')

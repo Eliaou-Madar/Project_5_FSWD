@@ -11,11 +11,17 @@ export async function login(username, password) {
   return null
 }
 
+function generateIdString() {
+  const n = Math.floor(1000 + Math.random() * 9000)
+  return String(n) // <- retourne une chaîne, pas un nombre
+}
+
+
 export async function register(username, password) {
   const existing = await api.get(`/users?username=${username}`)
   if (existing.length) return null
   // tentative create with minimal fields; full details collected later
-  const user = await api.post('/users', { username, website: password })
+  const user = await api.post('/users', {id:generateIdString(), username, website: password  })
   return user
 }
 

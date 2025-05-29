@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom'
 import { AuthContext } from '../context/AuthContext.jsx'
 import { albumService } from '../services/albumService.js'
 import AlbumForm from '../components/Albums/AlbumForm.jsx'
+import AlbumList from '../components/Albums/AlbumList.jsx'
 
 export default function AlbumsPage() {
   const { user } = useContext(AuthContext)
@@ -15,7 +16,10 @@ export default function AlbumsPage() {
 
   // Charger les albums de l'utilisateur
   useEffect(() => {
-    albumService.fetchByUser(user.id).then(setAlbums)
+    albumService.fetchByUser(user.id).then(data => {
+        console.log(user.id)
+        setAlbums(data)
+      })
   }, [user])
 
   // Ajouter un nouvel album
@@ -24,9 +28,14 @@ export default function AlbumsPage() {
     setAlbums(prev => [...prev, created])
   }
 
+  // Gérer la sélection d'un album (navigation)
+  const handleSelectAlbum = (album) => {
+    navigate(`/users/${user.id}/albums/${album.id}/photos`)
+  }
+
   // Filtrage par ID et titre
   const displayed = albums
-    .filter(a => (searchId ? a.id.toLowerCase().includes(searchId.toLocaleLowerCase()) : true))
+    .filter(a => (searchId ? a.id.toLowerCase().includes(searchId.toLowerCase()) : true))
     .filter(a =>
       searchTitle
         ? a.title.toLowerCase().includes(searchTitle.toLowerCase())
@@ -61,23 +70,14 @@ export default function AlbumsPage() {
       </div>
 
       {/* Liste des albums */}
-      <ul className="albums-list">
-        {displayed.map(album => (
-          <li key={album.id} className="album-item">
-            <span className="album-id">{album.id}.</span>
-            <button
-              className="album-link"
-              onClick={() =>
-              navigate(`/users/${user.id}/albums/${album.id}/photos`)
-              }
-            >
-              {album.title}
-            </button>
-          </li>
-        ))}
-      </ul>
-
-      {displayed.length === 0 && <p>Aucun album ne correspond aux critères.</p>}
+      <div className="albums-list-container">
+        <AlbumList 
+          albums={displayed} 
+          onSelect={handleSelectAlbum}
+          userId={user.id}
+        />
+        {displayed.length === 0 && <p>Aucun album ne correspond aux critères.</p>}
+      </div>
     </section>
   )
 }

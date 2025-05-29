@@ -5,13 +5,14 @@ import { AuthContext } from '../context/AuthContext.jsx'
 import { todoService } from '../services/todoService.js'
 import useCache from '../hooks/useCache.js'
 import { getItem, setItem } from '../utils/storage.js'
+import TodoForm from '../components/Todos/TodoForm.jsx'
+import TodoList from '../components/Todos/TodoList.jsx'
 
 export default function TodosPage() {
   const { user } = useContext(AuthContext)
   const [todos, setTodos] = useState([])
 
-  // Nouveaux états UI
-  const [newTitle, setNewTitle] = useState('')
+  // États UI
   const [sortBy, setSortBy] = useState('id')
   const [filterId, setFilterId] = useState('')
   const [filterTitle, setFilterTitle] = useState('')
@@ -19,18 +20,16 @@ export default function TodosPage() {
   const [editingId, setEditingId] = useState(null)
   const [editingTitle, setEditingTitle] = useState('')
 
-  // Charger les todos à l’arrivée
+  // Charger les todos à l'arrivée
   useEffect(() => {
     todoService.fetchByUser(user.id).then(setTodos)
   }, [user])
 
   // Gestionnaires CRUD
-  const handleAdd = async e => {
-    e.preventDefault()
-    if (!newTitle.trim()) return
-    const created = await todoService.create(user.id, { title: newTitle, completed: false })
+  const handleAdd = async (todoData) => {
+    if (!todoData.title.trim()) return
+    const created = await todoService.create(user.id, todoData)
     setTodos(prev => [...prev, created])
-    setNewTitle('')
   }
 
   const handleDelete = async id => {
@@ -59,9 +58,14 @@ export default function TodosPage() {
     setEditingTitle('')
   }
 
+  const cancelEditing = () => {
+    setEditingId(null)
+    setEditingTitle('')
+  }
+
   // Filtrage & tri
   const displayed = todos
-    .filter(t => (filterId ? t.id.toLowerCase().includes(filterId.toLocaleLowerCase()) : true))
+    .filter(t => (filterId ? t.id.toLowerCase().includes(filterId.toLowerCase()) : true))
     .filter(t =>
       filterTitle
         ? t.title.toLowerCase().includes(filterTitle.toLowerCase())
@@ -89,15 +93,10 @@ export default function TodosPage() {
     <section className="todos-page">
       <h2>Mes Todos</h2>
 
-      <form onSubmit={handleAdd} className="todo-form">
-        <input
-          value={newTitle}
-          onChange={e => setNewTitle(e.target.value)}
-          placeholder="Nouveau todo..."
-        />
-        <button type="submit">Ajouter</button>
-      </form>
+      {/* Formulaire d'ajout */}
+      <TodoForm onAdd={handleAdd} />
 
+      {/* Contrôles de tri et filtrage */}
       <div className="todos-controls">
         <label>
           Trier par:
@@ -135,41 +134,21 @@ export default function TodosPage() {
         </label>
       </div>
 
-      <ul className="todos-list">
-        {displayed.map(todo => (
-          <li key={todo.id}>
-            <input
-              type="checkbox"
-              checked={todo.completed}
-              onChange={() => handleToggle(todo)}
-            />
-
-            {editingId === todo.id ? (
-              <>
-                <input
-                  value={editingTitle}
-                  onChange={e => setEditingTitle(e.target.value)}
-                />
-                <button onClick={() => saveEditing(todo.id)}>💾</button>
-                <button onClick={() => setEditingId(null)}>✖️</button>
-              </>
-            ) : (
-              <>
-                <span className="todo-id">{todo.id}</span>
-                <span className={`todo-title ${todo.completed ? 'completed' : ''}`}>
-                  {todo.title}
-                </span>
-                <div className="todo-actions">
-                  <button onClick={() => startEditing(todo)}>✏️</button>
-                  <button onClick={() => handleDelete(todo.id)}>🗑️</button>
-                </div>
-              </>
-            )}
-          </li>
-        ))}
-      </ul>
-
-      {displayed.length === 0 && <p>Aucun todo ne correspond aux critères.</p>}
+      {/* Liste des todos */}
+      <div className="todos-list-container">
+        <TodoList 
+          todos={displayed}
+          editingId={editingId}
+          editingTitle={editingTitle}
+          onToggle={handleToggle}
+          onStartEditing={startEditing}
+          onSaveEditing={saveEditing}
+          onCancelEditing={cancelEditing}
+          onDelete={handleDelete}
+          onEditingTitleChange={setEditingTitle}
+        />
+        {displayed.length === 0 && <p>Aucun todo ne correspond aux critères.</p>}
+      </div>
     </section>
   )
 }
