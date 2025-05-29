@@ -13,26 +13,26 @@ export default function Login({ onLogin, error }) {
 
   return (
     <div className="auth-page">
-      <h2>Connexion</h2>
+      <h2>Sign in</h2>
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
         <input
           value={username}
           onChange={e => setUsername(e.target.value)}
-          placeholder="Nom d'utilisateur"
+          placeholder="username"
           required
         />
         <input
           type="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
-          placeholder="Mot de passe (website)"
+          placeholder="password"
           required
         />
-        <button type="submit">Se connecter</button>
+        <button type="submit">Sign In</button>
       </form>
       <p>
-        Pas encore de compte ? <Link to="/register">Inscription</Link>
+        Don't have an account ? <Link to="/register">Sign up</Link>
       </p>
     </div>
   )

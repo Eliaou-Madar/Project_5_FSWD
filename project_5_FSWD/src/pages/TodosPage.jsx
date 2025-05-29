@@ -91,7 +91,7 @@ export default function TodosPage() {
 
   return (
     <section className="todos-page">
-      <h2>Mes Todos</h2>
+      <h2>My Todos</h2>
 
       {/* Formulaire d'ajout */}
       <TodoForm onAdd={handleAdd} />
@@ -99,16 +99,16 @@ export default function TodosPage() {
       {/* Contrôles de tri et filtrage */}
       <div className="todos-controls">
         <label>
-          Trier par:
+          Filter by:
           <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
             <option value="id">ID</option>
-            <option value="title">Titre</option>
-            <option value="status">Statut</option>
+            <option value="title">Title</option>
+            <option value="status">Status</option>
           </select>
         </label>
 
         <label>
-          Filtrer ID:
+          Filter by ID:
           <input
             value={filterId}
             onChange={e => setFilterId(e.target.value)}
@@ -116,20 +116,20 @@ export default function TodosPage() {
         </label>
 
         <label>
-          Filtrer Titre:
+          Filter by Title:
           <input
             value={filterTitle}
             onChange={e => setFilterTitle(e.target.value)}
-            placeholder="Recherche..."
+            placeholder="Searching..."
           />
         </label>
 
         <label>
-          Statut:
+          Status:
           <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)}>
-            <option value="all">Tous</option>
-            <option value="completed">Terminés</option>
-            <option value="pending">En cours</option>
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+            <option value="pending">Pending</option>
           </select>
         </label>
       </div>
@@ -147,7 +147,7 @@ export default function TodosPage() {
           onDelete={handleDelete}
           onEditingTitleChange={setEditingTitle}
         />
-        {displayed.length === 0 && <p>Aucun todo ne correspond aux critères.</p>}
+        {displayed.length === 0 && <p>No todos matching.</p>}
       </div>
     </section>
   )

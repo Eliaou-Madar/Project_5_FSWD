@@ -12,7 +12,7 @@ export default function HomePage() {
       <Header />
       <div className="content-area">
         <main>
-          <h1>Bienvenue, {user.username}!</h1>
+          <h1>Hello, {user.username}!</h1>
           <Outlet />
         </main>
       </div>

@@ -17,14 +17,14 @@ export default function PostForm({ onAdd }) {
       <input
         value={title}
         onChange={e => setTitle(e.target.value)}
-        placeholder="Titre du post"
+        placeholder="Post Title"
       />
       <textarea
         value={body}
         onChange={e => setBody(e.target.value)}
-        placeholder="Contenu du post"
+        placeholder="Post content"
       />
-      <button type="submit">Ajouter Post</button>
+      <button type="submit">Add Post</button>
     </form>
   );
 }

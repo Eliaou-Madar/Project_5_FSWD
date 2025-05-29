@@ -44,7 +44,7 @@ export default function AlbumsPage() {
 
   return (
     <section className="albums-page">
-      <h2>Mes Albums</h2>
+      <h2>My Albums</h2>
 
       {/* Formulaire de création */}
       <AlbumForm onAdd={handleAdd} />
@@ -60,7 +60,7 @@ export default function AlbumsPage() {
           />
         </label>
         <label>
-          Filtrer Titre:
+          Filtrer Title:
           <input
             value={searchTitle}
             onChange={e => setSearchTitle(e.target.value)}
@@ -69,14 +69,14 @@ export default function AlbumsPage() {
         </label>
       </div>
 
-      {/* Liste des albums */}
+      {/* Albums list */}
       <div className="albums-list-container">
         <AlbumList 
           albums={displayed} 
           onSelect={handleSelectAlbum}
           userId={user.id}
         />
-        {displayed.length === 0 && <p>Aucun album ne correspond aux critères.</p>}
+        {displayed.length === 0 && <p>No founding...</p>}
       </div>
     </section>
   )

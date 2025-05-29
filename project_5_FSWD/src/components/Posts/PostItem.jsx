@@ -20,7 +20,7 @@ export default function PostItem({
       <span className="post-title">{post.title}</span>
       <div className="post-actions">
         <button onClick={() => onSelect(post)}>
-          {isSelected ? 'Désélectionner' : 'Sélectionner'}
+          {isSelected ? 'Deselect' : 'Select'}
         </button>
         <button onClick={() => onStartEditing(post)}>✏️</button>
         <button onClick={() => onDelete(post.id)}>🗑️</button>
@@ -32,12 +32,12 @@ export default function PostItem({
           <input
             value={editingTitle}
             onChange={e => onEditingTitleChange(e.target.value)}
-            placeholder="Titre du post"
+            placeholder="Post Title"
           />
           <textarea
             value={editingBody}
             onChange={e => onEditingBodyChange(e.target.value)}
-            placeholder="Contenu du post"
+            placeholder="Post Content"
           />
           <button onClick={() => onSaveEditing(post.id)}>💾</button>
           <button onClick={onCancelEditing}>✖️</button>

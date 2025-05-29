@@ -38,8 +38,8 @@ export default function AlbumPhotosPage() {
         }
       })
       .catch(err => {
-        console.error('Erreur fetch photos :', err);
-        alert("Impossible de charger les photos");
+        console.error('Fetch Error :', err);
+        alert("Impossible to load the photo");
       });
   }, [albumId, page, hasMore]);
 
@@ -50,7 +50,7 @@ export default function AlbumPhotosPage() {
       setPhotos(prev => [created, ...prev]);
     } catch (err) {
       console.error(err);
-      alert("Erreur lors de l'ajout de la photo");
+      alert("Error while adding the photo");
     }
   };
 
@@ -62,8 +62,8 @@ export default function AlbumPhotosPage() {
         prev.map(p => (p.id === photoId ? { ...p, ...updated } : p))
       );
     } catch (err) {
-      console.error('Erreur mise à jour :', err);
-      alert("Erreur lors de la modification de la photo");
+      console.error('Update Error :', err);
+      alert("Error while updating the photo");
     }
   };
 
@@ -73,8 +73,8 @@ export default function AlbumPhotosPage() {
       await photoService.delete(photoId);
       setPhotos(prev => prev.filter(p => p.id !== photoId));
     } catch (err) {
-      console.error('Erreur suppression :', err);
-      alert("Erreur lors de la suppression de la photo");
+      console.error('Deletion Error :', err);
+      alert("Error while deleting the photo");
     }
   };
 
@@ -95,7 +95,7 @@ export default function AlbumPhotosPage() {
           className="load-more"
           onClick={() => setPage(prev => prev + 1)}
         >
-          Charger plus
+          Load more
         </button>
       )}
     </section>

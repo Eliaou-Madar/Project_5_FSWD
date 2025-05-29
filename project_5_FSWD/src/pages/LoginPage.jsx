@@ -15,7 +15,7 @@ export default function LoginPage() {
       // Redirection vers /users/:userId/home
       navigate(`/users/${user.id}/home`, { replace: true })
     } else {
-      setError('Utilisateur ou mot de passe invalide')
+      setError('Username or password invalid')
     }
   }
 

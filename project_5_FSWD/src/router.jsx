@@ -18,11 +18,11 @@ export default function Router() {
     <Routes>
       <Route path="/" element={<Navigate to="/login" replace />} />
 
-      {/* Authentification publique */}
+      {/* Public authentification */}
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
 
-      {/* Zone protégée, préfixe users/:userId */}
+      {/* Protect, prefixe users/:userId */}
       <Route
         path="/users/:userId/*"
         element={

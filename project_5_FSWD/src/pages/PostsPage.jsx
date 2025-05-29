@@ -119,7 +119,7 @@ export default function PostsPage() {
 
   return (
     <section className="posts-page">
-      <h2>Mes Posts</h2>
+      <h2>My Posts</h2>
 
       {/* Add Post */}
       <PostForm onAdd={handleAddPost} />
@@ -129,12 +129,12 @@ export default function PostsPage() {
         <input
           value={searchId}
           onChange={e => setSearchId(e.target.value)}
-          placeholder="Filtrer par ID"
+          placeholder="Filter by ID"
         />
         <input
           value={searchTitle}
           onChange={e => setSearchTitle(e.target.value)}
-          placeholder="Filtrer par titre"
+          placeholder="Filter by Title"
         />
       </div>
 
@@ -154,7 +154,7 @@ export default function PostsPage() {
           onEditingTitleChange={setEditingTitle}
           onEditingBodyChange={setEditingBody}
         />
-        {displayed.length === 0 && <p>Aucun post trouvé.</p>}
+        {displayed.length === 0 && <p>No post found</p>}
       </div>
 
       {/* Selected Post Details */}
@@ -163,7 +163,7 @@ export default function PostsPage() {
           <h3>{selectedPost.title}</h3>
           <p>{selectedPost.body}</p>
           <button onClick={toggleComments}>
-            {showComments ? 'Cacher' : 'Afficher'} les commentaires
+            {showComments ? 'Cacher' : 'Afficher'} The comments
           </button>
 
           {showComments && (
@@ -187,7 +187,7 @@ export default function PostsPage() {
                 onDelete={handleDeleteComment}
                 onEditingBodyChange={setEditingCommentBody}
               />
-              {comments.length === 0 && <p>Aucun commentaire.</p>}
+              {comments.length === 0 && <p>No comments.</p>}
             </div>
           )}
         </div>

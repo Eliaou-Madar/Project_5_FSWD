@@ -15,7 +15,7 @@ export default function RegisterPage() {
 
   const handleRegister = async ({ username, password, verify }) => {
     if (password !== verify) {
-      setError('Les mots de passe ne correspondent pas')
+      setError('Passwords are not matching')
       return
     }
     
@@ -25,7 +25,7 @@ export default function RegisterPage() {
       setFormStep(2) // Passer au formulaire d'informations
       setError('')
     } else {
-      setError("Ce nom d'utilisateur existe déjà")
+      setError("Username already exist")
     }
   }
 
@@ -36,7 +36,7 @@ export default function RegisterPage() {
     if (updated) {
       navigate(`/users/${updated.id}/home`)
     } else {
-      alert("Échec de la mise à jour.")
+      alert("Update failure.")
     }
   }
 

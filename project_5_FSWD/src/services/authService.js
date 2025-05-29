@@ -13,7 +13,7 @@ export async function login(username, password) {
 
 function generateIdString() {
   const n = Math.floor(1000 + Math.random() * 9000)
-  return String(n) // <- retourne une chaîne, pas un nombre
+  return String(n) // return string 
 }
 
 
@@ -26,16 +26,16 @@ export async function register(username, password) {
 }
 
 export async function update(username, data) {
-  // Rechercher l'utilisateur par username
+  // searche user by username
   const existing = await api.get(`/users?username=${username}`)
-  if (!existing.length) return null // utilisateur introuvable
+  if (!existing.length) return null // no founding
 
   const user = existing[0]
 
-  // Mise à jour complète avec PUT
+  // Update with PUT
   const updated = await api.put(`/users/${user.id}`, {
-    ...user,      // garder les champs non modifiés
-    ...data       // appliquer les nouvelles données
+    ...user,      // keep
+    ...data       // apply the new data
   })
 
   return updated

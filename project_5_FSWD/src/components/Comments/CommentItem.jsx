@@ -18,7 +18,7 @@ export default function CommentItem({
           <textarea
             value={editingBody}
             onChange={e => onEditingBodyChange(e.target.value)}
-            placeholder="Votre commentaire..."
+            placeholder="Your comment..."
           />
           <div className="comment-actions">
             <button onClick={() => onSaveEditing(comment.id)}>💾</button>

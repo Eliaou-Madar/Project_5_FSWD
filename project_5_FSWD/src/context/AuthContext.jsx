@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
     if (u) {
       setUser(u)
       setItem('user', u)
-      return u       // on renvoie l'utilisateur complet
+      return u       // return full user 
     }
     return null
   }

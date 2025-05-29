@@ -17,20 +17,20 @@ export default function CommentForm({ onAdd, defaultName = '', defaultEmail = ''
       <input
         value={name}
         onChange={e => setName(e.target.value)}
-        placeholder="Votre nom"
+        placeholder="Your name"
       />
       <input
         value={email}
         onChange={e => setEmail(e.target.value)}
-        placeholder="Votre email"
+        placeholder="Your email"
         type="email"
       />
       <textarea
         value={body}
         onChange={e => setBody(e.target.value)}
-        placeholder="Votre commentaire..."
+        placeholder="Your comment"
       />
-      <button type="submit">Ajouter Commentaire</button>
+      <button type="submit">Add comment</button>
     </form>
   );
 }

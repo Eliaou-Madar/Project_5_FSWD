@@ -12,31 +12,31 @@ export default function Register({ onRegister, error }) {
 
   return (
     <div className="register-form">
-      <h2>Inscription</h2>
+      <h2>Registration</h2>
       {error && <p className="error">{error}</p>}
       
       <form onSubmit={handleSubmit}>
         <input
           value={username}
           onChange={e => setUsername(e.target.value)}
-          placeholder="Nom d'utilisateur"
+          placeholder="username"
           required
         />
         <input
           type="password"
           value={password}
           onChange={e => setPassword(e.target.value)}
-          placeholder="Mot de passe"
+          placeholder="password"
           required
         />
         <input
           type="password"
           value={verify}
           onChange={e => setVerify(e.target.value)}
-          placeholder="Vérification du mot de passe"
+          placeholder="verify password"
           required
         />
-        <button type="submit">S'inscrire</button>
+        <button type="submit">Sign up</button>
       </form>
     </div>
   )

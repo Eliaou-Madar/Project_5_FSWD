@@ -24,7 +24,7 @@ export default function TodoItem({
           <input
             value={editingTitle}
             onChange={e => onEditingTitleChange(e.target.value)}
-            placeholder="Titre du todo..."
+            placeholder="Title"
           />
           <button onClick={() => onSaveEditing(todo.id)}>💾</button>
           <button onClick={onCancelEditing}>✖️</button>

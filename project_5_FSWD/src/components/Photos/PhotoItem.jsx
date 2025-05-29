@@ -18,7 +18,7 @@ export default function PhotoItem({ photo, onEdit, onDelete }) {
   };
 
   const handleDelete = () => {
-    if (window.confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+    if (window.confirm('Are you sure to delete this photo')) {
       onDelete(photo.id);
     }
   };
@@ -31,20 +31,20 @@ export default function PhotoItem({ photo, onEdit, onDelete }) {
             type="url"
             value={editUrl}
             onChange={e => setEditUrl(e.target.value)}
-            placeholder="URL de la photo"
+            placeholder="Url"
           />
           <input
             type="text"
             value={editTitle}
             onChange={e => setEditTitle(e.target.value)}
-            placeholder="Titre de la photo"
+            placeholder="Title"
           />
           <div className="photo-edit-actions">
             <button onClick={handleSave} className="save-btn">
-              Sauvegarder
+              Save
             </button>
             <button onClick={handleCancel} className="cancel-btn">
-              Annuler
+              Cancel
             </button>
           </div>
         </div>
@@ -62,13 +62,13 @@ export default function PhotoItem({ photo, onEdit, onDelete }) {
             onClick={() => setIsEditing(true)} 
             className="edit-btn"
           >
-            Modifier
+            Modifiy
           </button>
           <button 
             onClick={handleDelete} 
             className="delete-btn"
           >
-            Supprimer
+            Delete
           </button>
         </div>
       </div>
