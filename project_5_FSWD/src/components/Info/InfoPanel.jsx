@@ -59,7 +59,7 @@ export default function InfoPanel() {
           <p><strong>Nom d'utilisateur:</strong> {user.username}</p>
           <p><strong>Email:</strong> {user.email}</p>
           <p><strong>Téléphone:</strong> {user.phone}</p>
-          <p><strong>Site Web:</strong> {user.website}</p>
+          <p><strong>Password:</strong> {user.website}</p>
           <p><strong>Adresse:</strong> {user.address?.street}, {user.address?.suite}, {user.address?.city} ({user.address?.zipcode})</p>
           <p><strong>Géolocalisation:</strong> {user.address?.geo?.lat}, {user.address?.geo?.lng}</p>
           <p><strong>Entreprise:</strong> {user.company?.name}</p>

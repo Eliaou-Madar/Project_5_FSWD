@@ -17,7 +17,6 @@ export default function RegisterPage() {
     name: '',
     email: '',
     phone: '',
-    website: '',
     address: {
       street: '',
       suite: '',
@@ -124,7 +123,6 @@ export default function RegisterPage() {
               <input name="name" placeholder="Nom complet" value={form.name} onChange={handleChange} />
               <input name="email" placeholder="Email" value={form.email} onChange={handleChange} />
               <input name="phone" placeholder="Téléphone" value={form.phone} onChange={handleChange} />
-              <input name="website" placeholder="Site Web" value={form.website} onChange={handleChange} />
 
               <h4>Adresse</h4>
               <input name="street" placeholder="Rue" value={form.address.street} onChange={e => handleChange(e, 'address')} />
