@@ -23,6 +23,7 @@ export default function AlbumPhotosPage() {
     setHasMore(true);
   }, [albumId]);
 
+
   // Fetch 10 photos per page
   useEffect(() => {
     if (!hasMore) return;

@@ -3,8 +3,7 @@ import './TodosPage.css'
 import React, { useState, useEffect, useContext } from 'react'
 import { AuthContext } from '../context/AuthContext.jsx'
 import { todoService } from '../services/todoService.js'
-import useCache from '../hooks/useCache.js'
-import { getItem, setItem } from '../utils/storage.js'
+
 import TodoForm from '../components/Todos/TodoForm.jsx'
 import TodoList from '../components/Todos/TodoList.jsx'
 
@@ -65,7 +64,7 @@ export default function TodosPage() {
 
   // Filtrage & tri
   const displayed = todos
-    .filter(t => (filterId ? t.id.toLowerCase().includes(filterId.toLowerCase()) : true))
+    .filter(t => (filterId ? t.id.toString().toLowerCase().includes(filterId.toLowerCase()) : true))
     .filter(t =>
       filterTitle
         ? t.title.toLowerCase().includes(filterTitle.toLowerCase())
@@ -93,46 +92,18 @@ export default function TodosPage() {
     <section className="todos-page">
       <h2>My Todos</h2>
 
-      {/* Formulaire d'ajout */}
-      <TodoForm onAdd={handleAdd} />
-
-      {/* Contrôles de tri et filtrage */}
-      <div className="todos-controls">
-        <label>
-          Filter by:
-          <select value={sortBy} onChange={e => setSortBy(e.target.value)}>
-            <option value="id">ID</option>
-            <option value="title">Title</option>
-            <option value="status">Status</option>
-          </select>
-        </label>
-
-        <label>
-          Filter by ID:
-          <input
-            value={filterId}
-            onChange={e => setFilterId(e.target.value)}
-          />
-        </label>
-
-        <label>
-          Filter by Title:
-          <input
-            value={filterTitle}
-            onChange={e => setFilterTitle(e.target.value)}
-            placeholder="Searching..."
-          />
-        </label>
-
-        <label>
-          Status:
-          <select value={filterStatus} onChange={e => setFilterStatus(e.target.value)}>
-            <option value="all">All</option>
-            <option value="completed">Completed</option>
-            <option value="pending">Pending</option>
-          </select>
-        </label>
-      </div>
+      {/* Formulaire d'ajout avec contrôles intégrés */}
+      <TodoForm 
+        onAdd={handleAdd}
+        sortBy={sortBy}
+        setSortBy={setSortBy}
+        filterId={filterId}
+        setFilterId={setFilterId}
+        filterTitle={filterTitle}
+        setFilterTitle={setFilterTitle}
+        filterStatus={filterStatus}
+        setFilterStatus={setFilterStatus}
+      />
 
       {/* Liste des todos */}
       <div className="todos-list-container">

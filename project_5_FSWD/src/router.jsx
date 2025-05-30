@@ -15,14 +15,15 @@ import PrivateRoute from './components/Auth/PrivateRoute.jsx'
 
 export default function Router() {
   return (
-    <Routes>
+    <Routes> 
+      {/*Si l'utilisateur accède à la racine (/), il est redirigé vers /login*/}
       <Route path="/" element={<Navigate to="/login" replace />} />
 
-      {/* Public authentification */}
+      {/* Public authentification accessibles sans être connecté*/}
       <Route path="/login" element={<LoginPage />} />
       <Route path="/register" element={<RegisterPage />} />
 
-      {/* Protect, prefixe users/:userId */}
+      {/* Protect, prefixe users/:userId que si l'utilisateur est authentifié. */}
       <Route
         path="/users/:userId/*"
         element={
@@ -31,6 +32,7 @@ export default function Router() {
           </PrivateRoute>
         }
       >
+        {/* notre outlet*/}
         <Route index element={<Navigate to="home" replace />} />
         <Route path="info" element={<InfoPage />} />
         <Route path="todos" element={<TodosPage />} />
@@ -39,6 +41,7 @@ export default function Router() {
         <Route path="albums/:albumId/photos" element={<AlbumPhotosPage />} />
       </Route>
 
+       {/*Si aucune route ne correspond, redirection vers /login*/}
       <Route path="*" element={<Navigate to="/login" replace />} />
     </Routes>
   )

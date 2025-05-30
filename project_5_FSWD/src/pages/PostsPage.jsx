@@ -4,7 +4,6 @@ import React, { useState, useEffect, useContext } from 'react'
 import { AuthContext } from '../context/AuthContext.jsx'
 import { postService } from '../services/postService.js'
 import { commentService } from '../services/commentService.js'
-import useCache from '../hooks/useCache.js'
 import PostForm from '../components/Posts/PostForm.jsx'
 import PostList from '../components/Posts/PostList.jsx'
 import CommentForm from '../components/Comments/CommentForm.jsx'
@@ -163,7 +162,7 @@ export default function PostsPage() {
           <h3>{selectedPost.title}</h3>
           <p>{selectedPost.body}</p>
           <button onClick={toggleComments}>
-            {showComments ? 'Cacher' : 'Afficher'} The comments
+            {showComments ? 'hide' : 'show'} The comments
           </button>
 
           {showComments && (

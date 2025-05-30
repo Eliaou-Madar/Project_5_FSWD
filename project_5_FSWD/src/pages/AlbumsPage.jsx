@@ -64,7 +64,7 @@ export default function AlbumsPage() {
           <input
             value={searchTitle}
             onChange={e => setSearchTitle(e.target.value)}
-            placeholder="Titre contient..."
+            placeholder="Titre content..."
           />
         </label>
       </div>

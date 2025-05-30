@@ -10,7 +10,7 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     const saved = getItem('user')
-    if (saved) setUser(saved)
+    if (saved) setUser(saved) //Si un utilisateur est déjà sauvegardé en local 
   }, [])
 
   async function login(username, password) {
@@ -43,7 +43,6 @@ export function AuthProvider({ children }) {
   }
   return null
 }
-
 
 
   function logout() {

@@ -7,7 +7,7 @@ import { AuthContext } from '../../context/AuthContext.jsx'
 export default function Header() {
   const { user, logout } = useContext(AuthContext)
   const navigate = useNavigate()
-  const location = useLocation()
+  const location = useLocation() /* allow use to get the actual path */
 
   const base = user ? `/users/${user.id}` : '/'
 

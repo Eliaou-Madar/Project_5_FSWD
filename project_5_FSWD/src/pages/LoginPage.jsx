@@ -5,6 +5,7 @@ import { AuthContext } from '../context/AuthContext.jsx'
 import Login from '../components/Auth/Login.jsx'
 
 export default function LoginPage() {
+  
   const { login } = useContext(AuthContext)
   const navigate = useNavigate()
   const [error, setError] = useState('')
